@@ -1,284 +1,193 @@
-// Bengali Wedding Invitation - JavaScript (Fixed Version)
+// Bengali Wedding Invitation JavaScript
+
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // Elements
-    const scrollIndicator = document.getElementById('scrollIndicator');
+    // Get form elements
     const rsvpForm = document.getElementById('rsvpForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const thankYouMessage = document.getElementById('thankYouMessage');
-    
-    // Form fields
-    const nameField = document.getElementById('name');
-    const emailField = document.getElementById('email');
-    const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
-    const messageField = document.getElementById('message');
-    
-    // Error message elements
-    const nameError = document.getElementById('name-error');
-    const emailError = document.getElementById('email-error');
-    const attendanceError = document.getElementById('attendance-error');
-    
-    // Smooth scroll functionality - FIXED
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', function(e) {
-            e.preventDefault();
-            const storySection = document.getElementById('story');
-            if (storySection) {
-                storySection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    }
-    
-    // Form validation functions
-    function validateName() {
-        const name = nameField.value.trim();
-        if (name.length < 2) {
-            showError(nameField, nameError, 'Please enter your full name (at least 2 characters)');
-            return false;
-        }
-        clearError(nameField, nameError);
-        return true;
-    }
-    
-    function validateEmail() {
-        const email = emailField.value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const successMessage = document.getElementById('successMessage');
+    const submitButton = rsvpForm.querySelector('.btn-submit');
+    const btnText = submitButton.querySelector('.btn-text');
+    const btnLoading = submitButton.querySelector('.btn-loading');
+
+    // Form validation and submission
+    rsvpForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        if (!email) {
-            showError(emailField, emailError, 'Please enter your email address');
-            return false;
-        }
+        // Show loading state
+        showLoadingState();
         
-        if (!emailRegex.test(email)) {
-            showError(emailField, emailError, 'Please enter a valid email address');
-            return false;
+        // Validate form
+        if (validateForm()) {
+            // Simulate form submission delay
+            setTimeout(() => {
+                handleFormSubmission();
+            }, 1500);
+        } else {
+            hideLoadingState();
         }
-        
-        clearError(emailField, emailError);
-        return true;
-    }
-    
-    function validateAttendance() {
-        const selectedAttendance = document.querySelector('input[name="attendance"]:checked');
-        if (!selectedAttendance) {
-            showError(null, attendanceError, 'Please select your attendance status');
-            return false;
-        }
-        clearError(null, attendanceError);
-        return true;
-    }
-    
-    function showError(field, errorElement, message) {
-        if (field) {
-            field.classList.add('error');
-        }
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.classList.add('show');
-        }
-    }
-    
-    function clearError(field, errorElement) {
-        if (field) {
-            field.classList.remove('error');
-        }
-        if (errorElement) {
-            errorElement.textContent = '';
-            errorElement.classList.remove('show');
-        }
-    }
-    
-    function clearAllErrors() {
-        clearError(nameField, nameError);
-        clearError(emailField, emailError);
-        clearError(null, attendanceError);
-    }
-    
-    // Real-time validation
-    if (nameField) {
-        nameField.addEventListener('blur', validateName);
-        nameField.addEventListener('input', function() {
-            if (nameField.classList.contains('error')) {
-                validateName();
-            }
-        });
-    }
-    
-    if (emailField) {
-        emailField.addEventListener('blur', validateEmail);
-        emailField.addEventListener('input', function() {
-            if (emailField.classList.contains('error')) {
-                validateEmail();
-            }
-        });
-    }
-    
-    attendanceRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (attendanceError && attendanceError.classList.contains('show')) {
-                validateAttendance();
-            }
-        });
     });
-    
-    // Form submission handling - FIXED
-    if (rsvpForm) {
-        rsvpForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Clear previous errors
-            clearAllErrors();
-            
-            // Validate all fields
-            const isNameValid = validateName();
-            const isEmailValid = validateEmail();
-            const isAttendanceValid = validateAttendance();
-            
-            if (!isNameValid || !isEmailValid || !isAttendanceValid) {
-                // Scroll to first error
-                const firstError = document.querySelector('.error, .error-message.show');
-                if (firstError) {
-                    firstError.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center' 
-                    });
-                }
-                return;
-            }
-            
-            // Show loading state
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission success for demo purposes
-            // In production, this would be a real API call
-            setTimeout(() => {
-                try {
-                    // Log the form data
-                    const formData = {
-                        name: nameField.value.trim(),
-                        email: emailField.value.trim(),
-                        attendance: document.querySelector('input[name="attendance"]:checked').value,
-                        message: messageField.value.trim(),
-                        timestamp: new Date().toLocaleString('en-IN', {
-                            timeZone: 'Asia/Kolkata',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        })
-                    };
-                    
-                    console.log('RSVP Data:', formData);
-                    
-                    // Show thank you message
-                    showThankYouMessage();
-                    
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    alert('Sorry, there was an error sending your RSVP. Please try again or contact us directly.');
-                    
-                    // Reset button
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }
-            }, 1500); // Simulate network delay
+
+    function validateForm() {
+        let isValid = true;
+        
+        // Remove existing error messages
+        removeErrorMessages();
+
+        // Check required fields
+        const guestName = document.getElementById('guestName');
+        const email = document.getElementById('email');
+        const weddingAttendance = document.querySelector('input[name="weddingAttendance"]:checked');
+        const receptionAttendance = document.querySelector('input[name="receptionAttendance"]:checked');
+
+        // Validate guest name
+        if (!guestName.value.trim()) {
+            showFieldError(guestName, 'Please enter your name');
+            isValid = false;
+        }
+
+        // Validate email
+        if (!email.value.trim()) {
+            showFieldError(email, 'Please enter your email address');
+            isValid = false;
+        } else if (!isValidEmail(email.value.trim())) {
+            showFieldError(email, 'Please enter a valid email address');
+            isValid = false;
+        }
+
+        // Validate wedding attendance
+        if (!weddingAttendance) {
+            const weddingGroup = document.querySelector('input[name="weddingAttendance"]').closest('.form-group');
+            showFieldError(weddingGroup, 'Please select your attendance for the wedding ceremony');
+            isValid = false;
+        }
+
+        // Validate reception attendance
+        if (!receptionAttendance) {
+            const receptionGroup = document.querySelector('input[name="receptionAttendance"]').closest('.form-group');
+            showFieldError(receptionGroup, 'Please select your attendance for the reception');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function showFieldError(element, message) {
+        if (!element) return;
+        
+        const formGroup = element.classList.contains('form-group') ? element : element.closest('.form-group');
+        if (!formGroup) return;
+
+        // Create error message element
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        errorDiv.style.color = 'var(--color-error)';
+        errorDiv.style.fontSize = 'var(--font-size-sm)';
+        errorDiv.style.marginTop = 'var(--space-4)';
+        
+        // Add error styling to field
+        if (element.classList && element.classList.contains('form-control')) {
+            element.style.borderColor = 'var(--color-error)';
+        }
+        
+        // Insert error message
+        formGroup.appendChild(errorDiv);
+    }
+
+    function removeErrorMessages() {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(msg => msg.remove());
+        
+        // Reset field styling
+        const formControls = document.querySelectorAll('.form-control');
+        formControls.forEach(control => {
+            control.style.borderColor = '';
         });
     }
-    
-    function showThankYouMessage() {
-        if (!rsvpForm || !thankYouMessage) return;
+
+    function showLoadingState() {
+        submitButton.disabled = true;
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+        submitButton.style.opacity = '0.8';
+    }
+
+    function hideLoadingState() {
+        submitButton.disabled = false;
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+        submitButton.style.opacity = '';
+    }
+
+    function handleFormSubmission() {
+        // Collect form data
+        const formData = collectFormData();
         
-        // Hide form with fade out effect
-        rsvpForm.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-        rsvpForm.style.opacity = '0';
-        rsvpForm.style.transform = 'translateY(-20px)';
+        // Hide loading state
+        hideLoadingState();
         
+        // Show success message
+        showSuccessMessage();
+        
+        // Log form data (in a real application, this would be sent to a server)
+        console.log('RSVP Form Submitted:', formData);
+        
+        // Scroll to success message
         setTimeout(() => {
-            rsvpForm.style.display = 'none';
-            
-            // Show thank you message with fade in effect
-            thankYouMessage.classList.remove('hidden');
-            thankYouMessage.style.display = 'block';
-            thankYouMessage.style.opacity = '0';
-            thankYouMessage.style.transform = 'translateY(20px)';
-            thankYouMessage.style.transition = 'opacity 0.5s ease-in, transform 0.5s ease-in';
-            
-            // Force reflow
-            thankYouMessage.offsetHeight;
-            
-            thankYouMessage.style.opacity = '1';
-            thankYouMessage.style.transform = 'translateY(0)';
-            
-            // Scroll to thank you message
-            setTimeout(() => {
-                thankYouMessage.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
-                });
-            }, 300);
-            
-        }, 500);
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        // Reset form after showing success
+        setTimeout(() => {
+            rsvpForm.reset();
+        }, 3000);
     }
-    
-    // Fix external links to open in new tabs
-    function setupExternalLinks() {
-        document.querySelectorAll('a[href^="http"], a[href^="https"]').forEach(link => {
-            link.setAttribute('target', '_blank');
-            link.setAttribute('rel', 'noopener noreferrer');
-            
-            // Add visual indicator for external links
-            if (!link.querySelector('svg')) {
-                const icon = document.createElement('span');
-                icon.innerHTML = ' ↗';
-                icon.style.fontSize = '0.8em';
-                icon.style.opacity = '0.7';
-                link.appendChild(icon);
-            }
-        });
+
+    function collectFormData() {
+        const formData = {
+            guestName: document.getElementById('guestName').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            guestCount: document.getElementById('guestCount').value,
+            weddingAttendance: document.querySelector('input[name="weddingAttendance"]:checked')?.value,
+            receptionAttendance: document.querySelector('input[name="receptionAttendance"]:checked')?.value,
+            dietary: document.getElementById('dietary').value.trim(),
+            message: document.getElementById('message').value.trim(),
+            submittedAt: new Date().toISOString()
+        };
+        
+        return formData;
     }
-    
-    // Accessibility enhancements
-    function setupAccessibility() {
-        // Add keyboard navigation for custom radio buttons
-        attendanceRadios.forEach((radio, index) => {
-            radio.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    const nextIndex = (index + 1) % attendanceRadios.length;
-                    attendanceRadios[nextIndex].focus();
-                    attendanceRadios[nextIndex].checked = true;
-                    if (attendanceError && attendanceError.classList.contains('show')) {
-                        validateAttendance();
-                    }
-                } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    const prevIndex = (index - 1 + attendanceRadios.length) % attendanceRadios.length;
-                    attendanceRadios[prevIndex].focus();
-                    attendanceRadios[prevIndex].checked = true;
-                    if (attendanceError && attendanceError.classList.contains('show')) {
-                        validateAttendance();
-                    }
-                }
-            });
-        });
+
+    function showSuccessMessage() {
+        // Hide the form
+        rsvpForm.style.display = 'none';
+        
+        // Show success message
+        successMessage.classList.remove('hidden');
+        successMessage.style.display = 'block';
+        
+        // Add animation
+        successMessage.style.opacity = '0';
+        successMessage.style.transform = 'translateY(20px)';
+        
+        // Trigger animation
+        setTimeout(() => {
+            successMessage.style.transition = 'all 0.5s ease-out';
+            successMessage.style.opacity = '1';
+            successMessage.style.transform = 'translateY(0)';
+        }, 10);
     }
-    
-    // Initialize features
-    setupExternalLinks();
-    setupAccessibility();
-    
-    // Smooth scrolling for all internal links
+
+    // Smooth scrolling for any anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const target = document.getElementById(targetId);
+            const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -287,82 +196,490 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Add subtle animations on scroll (enhanced)
-    function handleScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
+
+    // Enhanced form interactions
+    const formControls = document.querySelectorAll('.form-control');
+    formControls.forEach(control => {
+        control.addEventListener('focus', function() {
+            const parent = this.parentElement;
+            if (parent) {
+                parent.classList.add('focused');
+            }
+        });
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.classList.add('animated');
+        control.addEventListener('blur', function() {
+            const parent = this.parentElement;
+            if (parent) {
+                parent.classList.remove('focused');
+            }
+        });
+    });
+
+    // Radio button interactions
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Remove error styling when user makes a selection
+            const formGroup = this.closest('.form-group');
+            if (formGroup) {
+                const errorMessage = formGroup.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
                 }
-            });
-        }, observerOptions);
-        
-        // Observe elements for scroll animations
-        const animatedElements = document.querySelectorAll(
-            '.detail-card, .story-content, .rsvp-container'
-        );
-        
-        animatedElements.forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
-            observer.observe(el);
+            }
+        });
+    });
+
+    // Real-time email validation
+    const emailField = document.getElementById('email');
+    if (emailField) {
+        emailField.addEventListener('blur', function() {
+            if (this.value.trim() && !isValidEmail(this.value)) {
+                this.style.borderColor = 'var(--color-error)';
+            } else {
+                this.style.borderColor = '';
+            }
         });
     }
-    
-    // Initialize scroll animations if supported
-    if ('IntersectionObserver' in window) {
-        handleScrollAnimations();
-    } else {
-        // Fallback for older browsers - show all elements
-        document.querySelectorAll('.detail-card, .story-content, .rsvp-container')
-            .forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            });
-    }
-    
-    // Remove any unwanted focus outlines that might appear as blue dots
-    document.addEventListener('click', function(e) {
-        // Remove focus from clicked elements to prevent blue outline artifacts
-        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-            e.target.blur();
-        }
-    });
-    
-    // Enhanced form interaction
-    const formFields = [nameField, emailField, messageField];
-    formFields.forEach(field => {
-        if (field) {
-            field.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
+
+    // Character counter for text areas
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+        const maxLength = 500; // Set a reasonable max length
+        
+        textarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
             
-            field.addEventListener('blur', function() {
-                this.parentElement.classList.remove('focused');
-            });
+            // Create or update character counter
+            let counter = this.parentElement.querySelector('.char-counter');
+            if (!counter) {
+                counter = document.createElement('div');
+                counter.className = 'char-counter';
+                counter.style.fontSize = 'var(--font-size-xs)';
+                counter.style.color = 'var(--color-text-secondary)';
+                counter.style.textAlign = 'right';
+                counter.style.marginTop = 'var(--space-4)';
+                this.parentElement.appendChild(counter);
+            }
+            
+            counter.textContent = `${currentLength}/${maxLength} characters`;
+            
+            if (currentLength > maxLength) {
+                counter.style.color = 'var(--color-error)';
+                this.style.borderColor = 'var(--color-error)';
+            } else {
+                counter.style.color = 'var(--color-text-secondary)';
+                this.style.borderColor = '';
+            }
+        });
+    });
+
+    // Add subtle animations to cards on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe event cards and other elements for scroll animations
+    const animatedElements = document.querySelectorAll('.event-card, .couple-content, .rsvp-form');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    // Add hover effects to buttons
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            if (!this.disabled) {
+                this.style.transform = 'translateY(-2px)';
+            }
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            if (!this.disabled) {
+                this.style.transform = '';
+            }
+        });
+    });
+
+    // Enhanced loading animation for the hero section
+    const heroElements = document.querySelectorAll('.bengali-blessing, .blessing-translation, .bride-name, .ampersand, .groom-name, .wedding-tagline, .lotus-icon');
+    heroElements.forEach((element, index) => {
+        if (element) {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 300 + (index * 200));
         }
     });
-    
-    // Console welcome message
-    console.log('🎉 Welcome to Aparna & Arjun\'s Wedding Invitation!');
-    console.log('📅 Wedding: December 6th, 2025 at 7:15 PM');
-    console.log('🎊 Reception: December 7th, 2025 at 7:30 PM');
-    console.log('🏛️ Venue: The Oberoi Grand, Kolkata');
-    console.log('💝 Made with love for the happy couple');
-    console.log('');
-    console.log('To customize this invitation:');
-    console.log('1. Replace couple names in HTML');
-    console.log('2. Update dates and venue information');
-    console.log('3. Change FormSubmit email endpoint');
-    console.log('4. Host on GitHub Pages for free!');
-    
+
+    // Add a subtle parallax effect to the hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero && scrolled < hero.offsetHeight) {
+            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+    });
+
+    console.log('Bengali Wedding Invitation loaded successfully! 🎉');
+    console.log('Swati & Rajarshi - November 24 & 27, 2024');
+});// Bengali Wedding Invitation JavaScript
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get form elements
+    const rsvpForm = document.getElementById('rsvpForm');
+    const successMessage = document.getElementById('successMessage');
+    const submitButton = rsvpForm.querySelector('.btn-submit');
+    const btnText = submitButton.querySelector('.btn-text');
+    const btnLoading = submitButton.querySelector('.btn-loading');
+
+    // Form validation and submission
+    rsvpForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        showLoadingState();
+        
+        // Validate form
+        if (validateForm()) {
+            // Simulate form submission delay
+            setTimeout(() => {
+                handleFormSubmission();
+            }, 1500);
+        } else {
+            hideLoadingState();
+        }
+    });
+
+    function validateForm() {
+        let isValid = true;
+        
+        // Remove existing error messages
+        removeErrorMessages();
+
+        // Check required fields
+        const guestName = document.getElementById('guestName');
+        const email = document.getElementById('email');
+        const weddingAttendance = document.querySelector('input[name="weddingAttendance"]:checked');
+        const receptionAttendance = document.querySelector('input[name="receptionAttendance"]:checked');
+
+        // Validate guest name
+        if (!guestName.value.trim()) {
+            showFieldError(guestName, 'Please enter your name');
+            isValid = false;
+        }
+
+        // Validate email
+        if (!email.value.trim()) {
+            showFieldError(email, 'Please enter your email address');
+            isValid = false;
+        } else if (!isValidEmail(email.value.trim())) {
+            showFieldError(email, 'Please enter a valid email address');
+            isValid = false;
+        }
+
+        // Validate wedding attendance
+        if (!weddingAttendance) {
+            const weddingGroup = document.querySelector('input[name="weddingAttendance"]').closest('.form-group');
+            showFieldError(weddingGroup, 'Please select your attendance for the wedding ceremony');
+            isValid = false;
+        }
+
+        // Validate reception attendance
+        if (!receptionAttendance) {
+            const receptionGroup = document.querySelector('input[name="receptionAttendance"]').closest('.form-group');
+            showFieldError(receptionGroup, 'Please select your attendance for the reception');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function showFieldError(element, message) {
+        if (!element) return;
+        
+        const formGroup = element.classList.contains('form-group') ? element : element.closest('.form-group');
+        if (!formGroup) return;
+
+        // Create error message element
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        errorDiv.style.color = 'var(--color-error)';
+        errorDiv.style.fontSize = 'var(--font-size-sm)';
+        errorDiv.style.marginTop = 'var(--space-4)';
+        
+        // Add error styling to field
+        if (element.classList && element.classList.contains('form-control')) {
+            element.style.borderColor = 'var(--color-error)';
+        }
+        
+        // Insert error message
+        formGroup.appendChild(errorDiv);
+    }
+
+    function removeErrorMessages() {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(msg => msg.remove());
+        
+        // Reset field styling
+        const formControls = document.querySelectorAll('.form-control');
+        formControls.forEach(control => {
+            control.style.borderColor = '';
+        });
+    }
+
+    function showLoadingState() {
+        submitButton.disabled = true;
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+        submitButton.style.opacity = '0.8';
+    }
+
+    function hideLoadingState() {
+        submitButton.disabled = false;
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+        submitButton.style.opacity = '';
+    }
+
+    function handleFormSubmission() {
+        // Collect form data
+        const formData = collectFormData();
+        
+        // Hide loading state
+        hideLoadingState();
+        
+        // Show success message
+        showSuccessMessage();
+        
+        // Log form data (in a real application, this would be sent to a server)
+        console.log('RSVP Form Submitted:', formData);
+        
+        // Scroll to success message
+        setTimeout(() => {
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        // Reset form after showing success
+        setTimeout(() => {
+            rsvpForm.reset();
+        }, 3000);
+    }
+
+    function collectFormData() {
+        const formData = {
+            guestName: document.getElementById('guestName').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            guestCount: document.getElementById('guestCount').value,
+            weddingAttendance: document.querySelector('input[name="weddingAttendance"]:checked')?.value,
+            receptionAttendance: document.querySelector('input[name="receptionAttendance"]:checked')?.value,
+            dietary: document.getElementById('dietary').value.trim(),
+            message: document.getElementById('message').value.trim(),
+            submittedAt: new Date().toISOString()
+        };
+        
+        return formData;
+    }
+
+    function showSuccessMessage() {
+        // Hide the form
+        rsvpForm.style.display = 'none';
+        
+        // Show success message
+        successMessage.classList.remove('hidden');
+        successMessage.style.display = 'block';
+        
+        // Add animation
+        successMessage.style.opacity = '0';
+        successMessage.style.transform = 'translateY(20px)';
+        
+        // Trigger animation
+        setTimeout(() => {
+            successMessage.style.transition = 'all 0.5s ease-out';
+            successMessage.style.opacity = '1';
+            successMessage.style.transform = 'translateY(0)';
+        }, 10);
+    }
+
+    // Smooth scrolling for any anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Enhanced form interactions
+    const formControls = document.querySelectorAll('.form-control');
+    formControls.forEach(control => {
+        control.addEventListener('focus', function() {
+            const parent = this.parentElement;
+            if (parent) {
+                parent.classList.add('focused');
+            }
+        });
+        
+        control.addEventListener('blur', function() {
+            const parent = this.parentElement;
+            if (parent) {
+                parent.classList.remove('focused');
+            }
+        });
+    });
+
+    // Radio button interactions
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Remove error styling when user makes a selection
+            const formGroup = this.closest('.form-group');
+            if (formGroup) {
+                const errorMessage = formGroup.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            }
+        });
+    });
+
+    // Real-time email validation
+    const emailField = document.getElementById('email');
+    if (emailField) {
+        emailField.addEventListener('blur', function() {
+            if (this.value.trim() && !isValidEmail(this.value)) {
+                this.style.borderColor = 'var(--color-error)';
+            } else {
+                this.style.borderColor = '';
+            }
+        });
+    }
+
+    // Character counter for text areas
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+        const maxLength = 500; // Set a reasonable max length
+        
+        textarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            
+            // Create or update character counter
+            let counter = this.parentElement.querySelector('.char-counter');
+            if (!counter) {
+                counter = document.createElement('div');
+                counter.className = 'char-counter';
+                counter.style.fontSize = 'var(--font-size-xs)';
+                counter.style.color = 'var(--color-text-secondary)';
+                counter.style.textAlign = 'right';
+                counter.style.marginTop = 'var(--space-4)';
+                this.parentElement.appendChild(counter);
+            }
+            
+            counter.textContent = `${currentLength}/${maxLength} characters`;
+            
+            if (currentLength > maxLength) {
+                counter.style.color = 'var(--color-error)';
+                this.style.borderColor = 'var(--color-error)';
+            } else {
+                counter.style.color = 'var(--color-text-secondary)';
+                this.style.borderColor = '';
+            }
+        });
+    });
+
+    // Add subtle animations to cards on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe event cards and other elements for scroll animations
+    const animatedElements = document.querySelectorAll('.event-card, .couple-content, .rsvp-form');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    // Add hover effects to buttons
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            if (!this.disabled) {
+                this.style.transform = 'translateY(-2px)';
+            }
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            if (!this.disabled) {
+                this.style.transform = '';
+            }
+        });
+    });
+
+    // Enhanced loading animation for the hero section
+    const heroElements = document.querySelectorAll('.bengali-blessing, .blessing-translation, .bride-name, .ampersand, .groom-name, .wedding-tagline, .lotus-icon');
+    heroElements.forEach((element, index) => {
+        if (element) {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 300 + (index * 200));
+        }
+    });
+
+    // Add a subtle parallax effect to the hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero && scrolled < hero.offsetHeight) {
+            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+    });
+
+    console.log('Bengali Wedding Invitation loaded successfully! 🎉');
+    console.log('Swati & Rajarshi - November 24 & 27, 2024');
 });
