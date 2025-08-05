@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priya & Arjun - Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="invitation-card">
+            <!-- Header with Bengali Blessing -->
+            <div class="card-header">
+                <div class="decorative-border-top"></div>
+                <div class="blessing-section">
+                    <div class="bengali-blessing">শ্রী শ্রী গণেশায় নমঃ</div>
+                    <div class="english-blessing">With the divine blessings of Sri Sri Ganesh</div>
+                </div>
+                <div class="decorative-motif"></div>
+            </div>
+
+            <!-- Main Invitation Content -->
+            <div class="card-body">
+                <!-- Family Invitation -->
+                <div class="family-section">
+                    <div class="parents-invitation">
+                        <p class="parents-text">
+                            <span class="parent-names">Mr. Rajesh Kumar Chatterjee & Mrs. Meera Chatterjee</span><br>
+                            <span class="bengali-parents">শ্রী রাজেশ কুমার চট্টোপাধ্যায় ও শ্রীমতী মীরা চট্টোপাধ্যায়</span>
+                        </p>
+                        <p class="conjunction">and</p>
+                        <p class="parents-text">
+                            <span class="parent-names">Mr. Suresh Nath Banerjee & Mrs. Kavita Banerjee</span><br>
+                            <span class="bengali-parents">শ্রী সুরেশ নাথ বন্দ্যোপাধ্যায় ও শ্রীমতী কবিতা বন্দ্যোপাধ্যায়</span>
+                        </p>
+                    </div>
+                    <div class="invitation-text">
+                        <p class="english-invitation">cordially invite you to the auspicious wedding ceremony of their beloved children</p>
+                        <p class="bengali-invitation">তাঁদের প্রিয় সন্তানদের শুভ বিবাহ অনুষ্ঠানে আপনাদের সাদর আমন্ত্রণ জানাচ্ছেন</p>
+                    </div>
+                </div>
+
+                <!-- Couple Names -->
+                <div class="couple-section">
+                    <div class="couple-names">
+                        <div class="bride-section">
+                            <div class="name-english">Priya</div>
+                            <div class="name-bengali">প্রিয়া</div>
+                        </div>
+                        <div class="heart-divider">♥</div>
+                        <div class="groom-section">
+                            <div class="name-english">Arjun</div>
+                            <div class="name-bengali">অর্জুন</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wedding Details -->
+                <div class="details-section">
+                    <div class="main-date">
+                        <div class="english-date">Saturday, 15th February 2025</div>
+                        <div class="bengali-date">শনিবার, ১৫ই ফাল্গুন ১৪৩১</div>
+                    </div>
+
+                    <div class="ceremonies">
+                        <div class="ceremony">
+                            <h4>Gaye Holud | গায়ে হলুদ</h4>
+                            <p class="ceremony-date">Friday, 14th February 2025</p>
+                            <p class="ceremony-time">4:00 PM onwards</p>
+                            <p class="ceremony-desc">Traditional turmeric ceremony with family blessings</p>
+                        </div>
+                        <div class="ceremony">
+                            <h4>Wedding Ceremony | বিবাহ অনুষ্ঠান</h4>
+                            <p class="ceremony-date">Saturday, 15th February 2025</p>
+                            <p class="ceremony-time">6:00 PM - 9:00 PM</p>
+                            <p class="ceremony-desc">Sacred marriage rituals including Saat Paak, Sindoor Daan</p>
+                        </div>
+                        <div class="ceremony">
+                            <h4>Reception | সংবর্ধনা অনুষ্ঠান</h4>
+                            <p class="ceremony-date">Saturday, 15th February 2025</p>
+                            <p class="ceremony-time">9:00 PM onwards</p>
+                            <p class="ceremony-desc">Celebration dinner and cultural program</p>
+                        </div>
+                    </div>
+
+                    <div class="venue-section">
+                        <h3>Venue</h3>
+                        <div class="venue-details">
+                            <h4>Heritage Bengal Palace</h4>
+                            <p>123 Tagore Street, Ballygunge<br>Kolkata - 700019, West Bengal</p>
+                            <p class="contact-info">
+                                Phone: <a href="tel:+919876543210">+91 98765 43210</a><br>
+                                Email: <a href="mailto:contact@bengalpalace.com">contact@bengalpalace.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RSVP Section -->
+                <div class="rsvp-section">
+                    <div class="decorative-border-section"></div>
+                    <h3 class="rsvp-title">RSVP</h3>
+                    <p class="rsvp-subtitle">We would be honored by your presence</p>
+                    
+                    <form id="rsvpForm" class="rsvp-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guestName" class="form-label">Name *</label>
+                                <input type="text" id="guestName" name="guestName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="guestCount" class="form-label">Number of Guests</label>
+                                <select id="guestCount" name="guestCount" class="form-control">
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5+ Guests</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Attendance Confirmation *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="attendance" value="accepting" required>
+                                    <span class="radio-custom"></span>
+                                    Joyfully accepting
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="attendance" value="declining" required>
+                                    <span class="radio-custom"></span>
+                                    Regretfully declining
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Events Attending</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="events" value="gaye-holud">
+                                    <span class="checkbox-custom"></span>
+                                    Gaye Holud
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="events" value="wedding">
+                                    <span class="checkbox-custom"></span>
+                                    Wedding Ceremony
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="events" value="reception">
+                                    <span class="checkbox-custom"></span>
+                                    Reception
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dietary" class="form-label">Dietary Preferences</label>
+                            <select id="dietary" name="dietary" class="form-control">
+                                <option value="">No specific preference</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="non-vegetarian">Non-vegetarian</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="special">Special requirements (please mention in message)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Blessings/Message for the Couple</label>
+                            <textarea id="message" name="message" class="form-control" rows="4" placeholder="Share your heartfelt wishes for Priya & Arjun..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--full-width rsvp-submit">
+                            Submit RSVP
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-section">
+                    <h3>For any queries, please contact:</h3>
+                    <div class="contact-details">
+                        <p><strong>Mr. Rajesh Chatterjee</strong> (Bride's Father)<br>
+                        <a href="tel:+919876543210">+91 98765 43210</a></p>
+                        <p><strong>Mr. Suresh Banerjee</strong> (Groom's Father)<br>
+                        <a href="tel:+919876543211">+91 98765 43211</a></p>
+                    </div>
+                </div>
+
+                <!-- Footer Blessing -->
+                <div class="footer-blessing">
+                    <div class="bengali-footer">শুভ বিবাহ | সুখী দাম্পত্য জীবন কামনা করি</div>
+                    <div class="english-footer">Wishing the couple a blessed marriage and happy married life</div>
+                </div>
+            </div>
+
+            <div class="decorative-border-bottom"></div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ধন্যবাদ! Thank You!</h3>
+            </div>
+            <div class="modal-body">
+                <p class="bengali-success">আপনার সাড়া পেয়ে আমরা আনন্দিত। ধন্যবাদ!</p>
+                <p class="english-success">We are delighted to receive your response. Thank you!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn--primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
