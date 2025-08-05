@@ -738,51 +738,32 @@ select.form-control {
 }
 
 /* END PERPLEXITY DESIGN SYSTEM */
-/* Custom styles for Bengali Wedding Invitation */
+/* Bengali Wedding Invitation Styles */
 
-/* Background overlay with watercolor motif */
-.bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/da27ad23-ce3b-471e-99fb-60ca11ceab78.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.4;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Color palette variables */
+/* Custom Bengali Wedding Color Palette */
 :root {
-  --wedding-maroon: #8C0000;
-  --wedding-gold: #F5DD90;
-  --wedding-ivory: #FFF8F2;
-  --wedding-charcoal: #222;
-  --wedding-red-light: #B91C1C;
-  --wedding-gold-dark: #D4AF37;
+  --bengali-red: #B8860B;
+  --bengali-gold: #FFD700;
+  --bengali-cream: #F5F5DC;
+  --bengali-maroon: #800000;
+  --bengali-deep-red: #DC143C;
+  --bengali-warm-gold: #DAA520;
+  --bengali-ivory: #FFFEF7;
+  --bengali-brown: #8B4513;
 }
 
-/* Base styles */
-body {
-  background-color: var(--wedding-ivory);
-  color: var(--wedding-charcoal);
+* {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-}
-
-/* Typography overrides */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
-  color: var(--wedding-maroon);
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Inter', var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--bengali-ivory);
+  overflow-x: hidden;
 }
 
 /* Hero Section */
@@ -791,582 +772,561 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: var(--space-32);
   position: relative;
+  background: linear-gradient(135deg, var(--bengali-cream) 0%, var(--bengali-ivory) 100%);
+}
+
+.hero-background {
+  width: 100%;
+  position: relative;
+}
+
+.alpona-border {
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--bengali-gold) 0px,
+    var(--bengali-gold) 10px,
+    var(--bengali-red) 10px,
+    var(--bengali-red) 20px
+  );
+  position: relative;
+}
+
+.alpona-border.top {
+  border-bottom: 2px solid var(--bengali-maroon);
+}
+
+.alpona-border.bottom {
+  border-top: 2px solid var(--bengali-maroon);
+}
+
+.alpona-border::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 5px,
+    var(--bengali-maroon) 5px,
+    var(--bengali-maroon) 7px
+  );
+  transform: translateY(-50%);
 }
 
 .hero-content {
+  text-align: center;
+  padding: var(--space-32) var(--space-16);
   max-width: 800px;
-  width: 100%;
+  margin: 0 auto;
 }
 
-.hero-decoration .decorative-line {
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--wedding-gold), transparent);
-  margin: 0 auto var(--space-24);
-  position: relative;
-}
-
-.hero-decoration .decorative-line::before,
-.hero-decoration .decorative-line::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  width: 10px;
-  height: 10px;
-  background: var(--wedding-gold);
-  border-radius: 50%;
-}
-
-.hero-decoration .decorative-line::before {
-  left: -5px;
-}
-
-.hero-decoration .decorative-line::after {
-  right: -5px;
-}
-
-.hero-title {
-  font-size: 3.5rem;
+.bengali-blessing {
+  font-size: var(--font-size-3xl);
+  color: var(--bengali-maroon);
+  margin-bottom: var(--space-8);
   font-weight: 600;
-  margin-bottom: var(--space-16);
-  color: var(--wedding-maroon);
-  letter-spacing: -0.02em;
+  letter-spacing: 2px;
 }
 
-.bengali-heading {
+.blessing-translation {
+  font-size: var(--font-size-md);
+  color: var(--bengali-brown);
   margin-bottom: var(--space-32);
-}
-
-.bengali-text {
-  font-family: 'Merienda', cursive;
-  font-size: 2.5rem;
-  color: var(--wedding-gold-dark);
-  font-weight: 700;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.couple-names {
-  margin-bottom: var(--space-32);
-  font-family: 'Playfair Display', serif;
-}
-
-.bride-name, .groom-name {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--wedding-maroon);
-  display: inline-block;
-}
-
-.ampersand {
-  font-size: 2rem;
-  color: var(--wedding-gold-dark);
-  margin: 0 var(--space-16);
   font-style: italic;
 }
 
-.wedding-date {
-  margin-bottom: var(--space-32);
-}
-
-.date-text {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--wedding-maroon);
-  margin-bottom: var(--space-8);
-}
-
-.venue-text {
-  font-size: 1rem;
-  color: var(--wedding-charcoal);
-  opacity: 0.8;
-}
-
-.scroll-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: var(--space-32);
-}
-
-.scroll-indicator:hover {
-  transform: translateY(-2px);
-}
-
-.chevron-down {
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--wedding-gold-dark);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--wedding-gold-dark);
-  animation: bounce 2s infinite;
-}
-
-.scroll-text {
-  font-size: 0.875rem;
-  color: var(--wedding-charcoal);
-  opacity: 0.7;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
-
-/* Story Section */
-.story-section {
-  padding: var(--space-32) 0;
-  background: var(--color-bg-1);
-}
-
-.story-content {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.story-content h2 {
-  font-size: 2.5rem;
+.couple-names {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 700;
   margin-bottom: var(--space-24);
-  color: var(--wedding-maroon);
+  line-height: 1.1;
 }
 
-.story-content p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--wedding-charcoal);
-  opacity: 0.9;
+.bride-name {
+  color: var(--bengali-deep-red);
+  display: inline-block;
+  animation: fadeInUp 1s ease-out 0.5s both;
 }
 
-/* Ceremony Details */
-.ceremony-details {
+.ampersand {
+  color: var(--bengali-gold);
+  margin: 0 var(--space-16);
+  font-size: 0.8em;
+  animation: fadeInUp 1s ease-out 0.7s both;
+}
+
+.groom-name {
+  color: var(--bengali-maroon);
+  display: inline-block;
+  animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.wedding-tagline {
+  font-size: var(--font-size-lg);
+  color: var(--bengali-brown);
+  font-style: italic;
+  margin-bottom: var(--space-24);
+  animation: fadeInUp 1s ease-out 1.1s both;
+}
+
+.lotus-divider {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-24) 0;
+}
+
+.lotus-icon {
+  font-size: var(--font-size-2xl);
+  animation: fadeInUp 1s ease-out 1.3s both;
+}
+
+/* Wedding Details Section */
+.wedding-details {
   padding: var(--space-32) 0;
-  background: var(--wedding-ivory);
+  background-color: var(--color-surface);
 }
 
 .section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-3xl);
   text-align: center;
-  font-size: 2.5rem;
+  color: var(--bengali-maroon);
   margin-bottom: var(--space-32);
-  color: var(--wedding-maroon);
+  position: relative;
 }
 
-.details-grid {
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--bengali-gold);
+}
+
+.events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--space-32);
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.detail-card {
+.event-card {
   background: var(--color-surface);
-  padding: var(--space-32);
+  border: 2px solid var(--bengali-gold);
   border-radius: var(--radius-lg);
+  padding: var(--space-24);
   text-align: center;
-  box-shadow: var(--shadow-lg);
-  border: 2px dashed var(--wedding-gold);
   position: relative;
-  transition: transform 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--duration-normal) var(--ease-standard);
 }
 
-.detail-card::before {
+.event-card:hover {
+  transform: translateY(-4px);
+}
+
+.event-card::before {
   content: '';
   position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  background: linear-gradient(45deg, var(--wedding-gold), var(--wedding-maroon), var(--wedding-gold));
-  border-radius: var(--radius-lg);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--bengali-red), var(--bengali-gold), var(--bengali-red));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-.detail-card:hover::before {
-  opacity: 0.1;
-}
-
-.detail-card:hover {
-  transform: translateY(-5px);
-}
-
-.detail-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--wedding-gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--space-16);
-  color: var(--wedding-maroon);
-}
-
-.detail-card h3 {
-  font-size: 1.5rem;
+.event-icon {
+  font-size: var(--font-size-4xl);
   margin-bottom: var(--space-16);
-  color: var(--wedding-maroon);
 }
 
-.detail-date, .detail-time, .detail-venue {
+.event-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-2xl);
+  color: var(--bengali-maroon);
+  margin-bottom: var(--space-16);
+}
+
+.event-details {
+  margin-bottom: var(--space-16);
+}
+
+.date {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--bengali-deep-red);
   margin-bottom: var(--space-8);
-  color: var(--wedding-charcoal);
 }
 
-.detail-date {
-  font-weight: 600;
-  font-size: 1.125rem;
+.time {
+  font-size: var(--font-size-md);
+  color: var(--bengali-brown);
+  margin-bottom: var(--space-8);
 }
 
-.detail-time {
-  font-size: 1.25rem;
-  color: var(--wedding-maroon);
-  font-weight: 500;
+.venue {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+.address {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.traditional-note {
+  color: var(--bengali-brown);
+  font-size: var(--font-size-sm);
+  border-top: 1px solid var(--bengali-gold);
+  padding-top: var(--space-12);
+  margin-top: var(--space-16);
+}
+
+/* Couple Introduction */
+.couple-intro {
+  padding: var(--space-32) 0;
+  background: var(--color-bg-3);
+}
+
+.couple-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-32);
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.couple-image {
+  text-align: center;
+}
+
+.couple-illustration {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.couple-story p {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-16);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.conch-shell {
+  font-size: var(--font-size-2xl);
+  text-align: center;
+  margin-top: var(--space-24);
 }
 
 /* RSVP Section */
 .rsvp-section {
   padding: var(--space-32) 0;
-  background: var(--color-bg-2);
+  background: var(--color-surface);
 }
 
-.rsvp-container {
-  max-width: 500px;
-  margin: 0 auto;
+.rsvp-subtitle {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-32);
 }
 
 .rsvp-form {
+  max-width: 700px;
+  margin: 0 auto;
   background: var(--color-surface);
   padding: var(--space-32);
   border-radius: var(--radius-lg);
+  border: 2px solid var(--bengali-gold);
   box-shadow: var(--shadow-lg);
-  border: 1px solid var(--wedding-gold);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  margin-bottom: var(--space-16);
 }
 
 .form-group {
-  margin-bottom: var(--space-24);
+  margin-bottom: var(--space-16);
 }
 
 .form-label {
-  color: var(--wedding-maroon);
-  font-weight: 600;
+  display: block;
   margin-bottom: var(--space-8);
+  font-weight: var(--font-weight-medium);
+  color: var(--bengali-maroon);
 }
 
 .form-control {
+  width: 100%;
+  padding: var(--space-12);
   border: 2px solid var(--color-border);
-  background: var(--wedding-ivory);
-  transition: all 0.3s ease;
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-md);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .form-control:focus {
-  border-color: var(--wedding-gold-dark);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+  border-color: var(--bengali-gold);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.2);
 }
 
-/* Custom Radio Buttons */
 .radio-group {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-}
-
-.radio-option {
-  position: relative;
-}
-
-.radio-option input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
+  gap: var(--space-16);
+  flex-wrap: wrap;
 }
 
 .radio-label {
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-weight: 500;
-  color: var(--wedding-charcoal);
-  transition: color 0.3s ease;
+  font-size: var(--font-size-md);
+  gap: var(--space-8);
 }
 
-.radio-button {
+.radio-label input[type="radio"] {
+  display: none;
+}
+
+.radio-custom {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--wedding-gold-dark);
+  border: 2px solid var(--color-border);
   border-radius: 50%;
-  margin-right: var(--space-12);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
-.radio-button::before {
+.radio-label input[type="radio"]:checked + .radio-custom {
+  border-color: var(--bengali-gold);
+  background: var(--bengali-gold);
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 10px;
-  height: 10px;
-  background: var(--wedding-gold-dark);
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: white;
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.3s ease;
 }
 
-input[type="radio"]:checked + .radio-label .radio-button::before {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-input[type="radio"]:checked + .radio-label .radio-button {
-  border-color: var(--wedding-gold-dark);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-}
-
-input[type="radio"]:checked + .radio-label {
-  color: var(--wedding-maroon);
-}
-
-/* Button overrides */
-.btn--primary {
-  background: var(--wedding-maroon);
-  color: var(--wedding-ivory);
+.btn-submit {
+  width: 100%;
+  padding: var(--space-16) var(--space-24);
+  background: linear-gradient(135deg, var(--bengali-red), var(--bengali-maroon));
+  color: white;
   border: none;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-standard);
+  position: relative;
+  overflow: hidden;
 }
 
-.btn--primary:hover {
-  background: var(--wedding-red-light);
+.btn-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(140, 0, 0, 0.3);
-}
-
-.btn--outline {
-  border: 2px solid var(--wedding-maroon);
-  color: var(--wedding-maroon);
-  background: transparent;
-  font-weight: 500;
-}
-
-.btn--outline:hover {
-  background: var(--wedding-maroon);
-  color: var(--wedding-ivory);
-}
-
-/* Thank You Message */
-.thank-you-message {
-  background: var(--color-surface);
-  padding: var(--space-32);
-  border-radius: var(--radius-lg);
-  text-align: center;
   box-shadow: var(--shadow-lg);
-  border: 2px solid var(--wedding-gold);
 }
 
-.thank-you-content {
-  max-width: 400px;
-  margin: 0 auto;
+.btn-submit:active {
+  transform: translateY(0);
 }
 
-.thank-you-icon {
-  width: 80px;
-  height: 80px;
-  background: var(--wedding-gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--space-24);
-  color: var(--wedding-maroon);
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--duration-normal) var(--ease-standard);
 }
 
-.thank-you-message h3 {
-  font-family: 'Merienda', cursive;
-  font-size: 2rem;
-  color: var(--wedding-gold-dark);
+.btn-submit:hover::before {
+  left: 100%;
+}
+
+.success-message {
+  text-align: center;
+  max-width: 500px;
+  margin: var(--space-32) auto 0;
+  padding: var(--space-24);
+  background: var(--color-bg-3);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-success);
+}
+
+.success-icon {
+  font-size: var(--font-size-4xl);
   margin-bottom: var(--space-16);
 }
 
-.thank-you-message p {
-  font-size: 1.125rem;
-  color: var(--wedding-charcoal);
-  margin-bottom: var(--space-24);
-}
-
-.share-links {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-16);
+.success-message h3 {
+  color: var(--color-success);
+  margin-bottom: var(--space-8);
 }
 
 /* Footer */
 .footer {
-  background: var(--wedding-maroon);
-  color: var(--wedding-ivory);
-  padding: var(--space-32) 0;
-  text-align: center;
+  background: var(--bengali-maroon);
+  color: var(--bengali-cream);
+  padding: var(--space-32) 0 var(--space-16);
 }
 
 .footer-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.bengali-blessing {
-  font-family: 'Merienda', cursive;
-  font-size: 1.5rem;
-  color: var(--wedding-gold);
-  margin-bottom: var(--space-8);
-  font-weight: 400;
-}
-
-.blessing-translation {
-  font-size: 1rem;
-  opacity: 0.8;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-32);
   margin-bottom: var(--space-24);
-  font-style: italic;
 }
 
-.footer-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-24);
+.footer h3 {
+  color: var(--bengali-gold);
   margin-bottom: var(--space-16);
-  flex-wrap: wrap;
 }
 
-.footer-links a {
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.contact-item {
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  color: var(--wedding-gold);
-  text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
-  color: var(--wedding-ivory);
+.contact-icon {
+  width: 20px;
 }
 
-.wedding-hashtag {
-  color: var(--wedding-gold);
-  font-weight: 500;
-  font-family: 'Playfair Display', serif;
+.footer-blessing {
+  text-align: center;
 }
 
-.copyright {
-  font-size: 0.875rem;
-  opacity: 0.7;
-  margin: 0;
+.bengali-text {
+  font-size: var(--font-size-xl);
+  color: var(--bengali-gold);
+  margin-bottom: var(--space-4);
 }
 
-/* Error messages */
-.error-message {
-  color: var(--color-error);
-  font-size: 0.875rem;
-  margin-top: var(--space-4);
-  display: none;
+.english-translation {
+  font-size: var(--font-size-sm);
+  font-style: italic;
 }
 
-.error-message.show {
-  display: block;
+.footer-divider {
+  height: 1px;
+  background: var(--bengali-gold);
+  margin: var(--space-24) 0;
 }
 
-.form-control.error {
-  border-color: var(--color-error);
+.footer-bottom {
+  text-align: center;
+  color: var(--bengali-cream);
+  font-size: var(--font-size-sm);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .bengali-text {
-    font-size: 2rem;
-  }
-  
-  .bride-name, .groom-name {
-    font-size: 2rem;
+  .couple-names {
+    font-size: clamp(2rem, 10vw, 3rem);
   }
   
   .ampersand {
-    font-size: 1.5rem;
     margin: 0 var(--space-8);
   }
   
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .details-grid {
+  .events-grid {
     grid-template-columns: 1fr;
     gap: var(--space-24);
   }
   
-  .detail-card {
-    padding: var(--space-24);
+  .couple-content {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
   
-  .hero, .story-section, .ceremony-details, .rsvp-section {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .radio-group {
+    justify-content: center;
+  }
+  
+  .hero-content {
     padding: var(--space-24) var(--space-16);
   }
   
-  .footer-links {
-    flex-direction: column;
-    gap: var(--space-16);
+  .rsvp-form {
+    margin: 0 var(--space-16);
+    padding: var(--space-24);
   }
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 2rem;
+  .section-title {
+    font-size: var(--font-size-2xl);
   }
   
-  .bengali-text {
-    font-size: 1.75rem;
+  .event-card {
+    padding: var(--space-16);
   }
   
-  .bride-name, .groom-name {
-    font-size: 1.75rem;
-  }
-  
-  .couple-names {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-  }
-  
-  .ampersand {
-    font-size: 1.25rem;
-    margin: 0;
-  }
-  
-  .rsvp-form {
-    padding: var(--space-24);
-  }
-  
-  .radio-group {
-    gap: var(--space-16);
+  .bengali-blessing {
+    font-size: var(--font-size-2xl);
   }
 }
