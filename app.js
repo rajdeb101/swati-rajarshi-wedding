@@ -1,378 +1,297 @@
-// Bengali Wedding Invitation JavaScript
-
+// Bengali Wedding Invitation - JavaScript (Fixed Version)
 document.addEventListener('DOMContentLoaded', function() {
-    // Get form and modal elements
+    
+    // Elements
+    const scrollIndicator = document.getElementById('scrollIndicator');
     const rsvpForm = document.getElementById('rsvpForm');
-    const successModal = document.getElementById('successModal');
+    const submitBtn = document.getElementById('submitBtn');
+    const thankYouMessage = document.getElementById('thankYouMessage');
     
-    // Initialize the application
-    init();
+    // Form fields
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+    const messageField = document.getElementById('message');
     
-    function init() {
-        // Add form submission handler
-        if (rsvpForm) {
-            rsvpForm.addEventListener('submit', handleFormSubmission);
-        }
-        
-        // Add smooth scrolling for any anchor links
-        addSmoothScrolling();
-        
-        // Add form field animations
-        addFormAnimations();
-        
-        // Add decorative element interactions
-        addDecorativeInteractions();
-    }
+    // Error message elements
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const attendanceError = document.getElementById('attendance-error');
     
-    // Handle RSVP form submission
-    function handleFormSubmission(event) {
-        event.preventDefault();
-        
-        // Validate form
-        if (!validateForm()) {
-            return;
-        }
-        
-        // Collect form data
-        const formData = collectFormData();
-        
-        // Show loading state
-        showLoadingState();
-        
-        // Simulate form submission (since this is a static site)
-        setTimeout(() => {
-            // Hide loading state
-            hideLoadingState();
-            
-            // Show success modal
-            showSuccessModal();
-            
-            // Reset form
-            rsvpForm.reset();
-            
-            // Log form data (in a real application, this would be sent to a server)
-            console.log('RSVP Submission:', formData);
-        }, 1500);
-    }
-    
-    // Validate the RSVP form
-    function validateForm() {
-        const requiredFields = [
-            { id: 'guestName', name: 'Name' },
-            { id: 'email', name: 'Email' },
-            { name: 'attendance', type: 'radio' }
-        ];
-        
-        let isValid = true;
-        const errors = [];
-        
-        // Check required text fields
-        requiredFields.forEach(field => {
-            if (field.type === 'radio') {
-                const radioButtons = document.querySelectorAll(`input[name="${field.name}"]`);
-                const isChecked = Array.from(radioButtons).some(radio => radio.checked);
-                if (!isChecked) {
-                    errors.push('Please select your attendance confirmation');
-                    isValid = false;
-                }
-            } else {
-                const element = document.getElementById(field.id);
-                if (!element || !element.value.trim()) {
-                    errors.push(`${field.name} is required`);
-                    isValid = false;
-                    if (element) {
-                        element.style.borderColor = 'var(--color-error)';
-                    }
-                } else {
-                    if (element) {
-                        element.style.borderColor = '';
-                    }
-                }
-            }
-        });
-        
-        // Validate email format
-        const emailField = document.getElementById('email');
-        if (emailField && emailField.value.trim()) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailField.value.trim())) {
-                errors.push('Please enter a valid email address');
-                emailField.style.borderColor = 'var(--color-error)';
-                isValid = false;
-            }
-        }
-        
-        // Show errors if any
-        if (errors.length > 0) {
-            showErrorMessage(errors.join('\n'));
-        }
-        
-        return isValid;
-    }
-    
-    // Collect form data
-    function collectFormData() {
-        const formData = {};
-        
-        // Get basic form fields
-        formData.guestName = document.getElementById('guestName').value.trim();
-        formData.email = document.getElementById('email').value.trim();
-        formData.phone = document.getElementById('phone').value.trim();
-        formData.guestCount = document.getElementById('guestCount').value;
-        formData.dietary = document.getElementById('dietary').value;
-        formData.message = document.getElementById('message').value.trim();
-        
-        // Get attendance confirmation
-        const attendanceRadio = document.querySelector('input[name="attendance"]:checked');
-        formData.attendance = attendanceRadio ? attendanceRadio.value : '';
-        
-        // Get selected events
-        const eventCheckboxes = document.querySelectorAll('input[name="events"]:checked');
-        formData.events = Array.from(eventCheckboxes).map(cb => cb.value);
-        
-        // Add timestamp
-        formData.submittedAt = new Date().toISOString();
-        
-        return formData;
-    }
-    
-    // Show loading state
-    function showLoadingState() {
-        const submitButton = document.querySelector('.rsvp-submit');
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Submitting...';
-            submitButton.style.opacity = '0.7';
-        }
-    }
-    
-    // Hide loading state
-    function hideLoadingState() {
-        const submitButton = document.querySelector('.rsvp-submit');
-        if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Submit RSVP';
-            submitButton.style.opacity = '1';
-        }
-    }
-    
-    // Show success modal
-    function showSuccessModal() {
-        if (successModal) {
-            successModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            
-            // Focus on the close button for accessibility
-            const closeButton = successModal.querySelector('button');
-            if (closeButton) {
-                setTimeout(() => closeButton.focus(), 100);
-            }
-        }
-    }
-    
-    // Close modal function (called from HTML)
-    window.closeModal = function() {
-        if (successModal) {
-            successModal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-    };
-    
-    // Close modal when clicking outside
-    if (successModal) {
-        successModal.addEventListener('click', function(event) {
-            if (event.target === successModal) {
-                window.closeModal();
+    // Smooth scroll functionality - FIXED
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function(e) {
+            e.preventDefault();
+            const storySection = document.getElementById('story');
+            if (storySection) {
+                storySection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     }
     
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && !successModal.classList.contains('hidden')) {
-            window.closeModal();
+    // Form validation functions
+    function validateName() {
+        const name = nameField.value.trim();
+        if (name.length < 2) {
+            showError(nameField, nameError, 'Please enter your full name (at least 2 characters)');
+            return false;
         }
+        clearError(nameField, nameError);
+        return true;
+    }
+    
+    function validateEmail() {
+        const email = emailField.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!email) {
+            showError(emailField, emailError, 'Please enter your email address');
+            return false;
+        }
+        
+        if (!emailRegex.test(email)) {
+            showError(emailField, emailError, 'Please enter a valid email address');
+            return false;
+        }
+        
+        clearError(emailField, emailError);
+        return true;
+    }
+    
+    function validateAttendance() {
+        const selectedAttendance = document.querySelector('input[name="attendance"]:checked');
+        if (!selectedAttendance) {
+            showError(null, attendanceError, 'Please select your attendance status');
+            return false;
+        }
+        clearError(null, attendanceError);
+        return true;
+    }
+    
+    function showError(field, errorElement, message) {
+        if (field) {
+            field.classList.add('error');
+        }
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+    }
+    
+    function clearError(field, errorElement) {
+        if (field) {
+            field.classList.remove('error');
+        }
+        if (errorElement) {
+            errorElement.textContent = '';
+            errorElement.classList.remove('show');
+        }
+    }
+    
+    function clearAllErrors() {
+        clearError(nameField, nameError);
+        clearError(emailField, emailError);
+        clearError(null, attendanceError);
+    }
+    
+    // Real-time validation
+    if (nameField) {
+        nameField.addEventListener('blur', validateName);
+        nameField.addEventListener('input', function() {
+            if (nameField.classList.contains('error')) {
+                validateName();
+            }
+        });
+    }
+    
+    if (emailField) {
+        emailField.addEventListener('blur', validateEmail);
+        emailField.addEventListener('input', function() {
+            if (emailField.classList.contains('error')) {
+                validateEmail();
+            }
+        });
+    }
+    
+    attendanceRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (attendanceError && attendanceError.classList.contains('show')) {
+                validateAttendance();
+            }
+        });
     });
     
-    // Show error message
-    function showErrorMessage(message) {
-        // Create or update error message element
-        let errorElement = document.querySelector('.form-error-message');
-        
-        if (!errorElement) {
-            errorElement = document.createElement('div');
-            errorElement.className = 'form-error-message';
-            errorElement.style.cssText = `
-                background: rgba(var(--color-error-rgb), 0.1);
-                color: var(--color-error);
-                padding: var(--space-12);
-                border-radius: var(--radius-base);
-                margin-bottom: var(--space-16);
-                border: 1px solid var(--color-error);
-                white-space: pre-line;
-                font-weight: var(--font-weight-medium);
-            `;
+    // Form submission handling - FIXED
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Insert at the beginning of the form
-            rsvpForm.insertBefore(errorElement, rsvpForm.firstChild);
-        }
-        
-        errorElement.textContent = message;
-        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        // Remove error message after 5 seconds
-        setTimeout(() => {
-            if (errorElement && errorElement.parentNode) {
-                errorElement.remove();
-            }
-        }, 5000);
-    }
-    
-    // Add smooth scrolling for anchor links
-    function addSmoothScrolling() {
-        const links = document.querySelectorAll('a[href^="#"]');
-        links.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            // Clear previous errors
+            clearAllErrors();
+            
+            // Validate all fields
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isAttendanceValid = validateAttendance();
+            
+            if (!isNameValid || !isEmailValid || !isAttendanceValid) {
+                // Scroll to first error
+                const firstError = document.querySelector('.error, .error-message.show');
+                if (firstError) {
+                    firstError.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
                     });
                 }
-            });
+                return;
+            }
+            
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission success for demo purposes
+            // In production, this would be a real API call
+            setTimeout(() => {
+                try {
+                    // Log the form data
+                    const formData = {
+                        name: nameField.value.trim(),
+                        email: emailField.value.trim(),
+                        attendance: document.querySelector('input[name="attendance"]:checked').value,
+                        message: messageField.value.trim(),
+                        timestamp: new Date().toLocaleString('en-IN', {
+                            timeZone: 'Asia/Kolkata',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        })
+                    };
+                    
+                    console.log('RSVP Data:', formData);
+                    
+                    // Show thank you message
+                    showThankYouMessage();
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    alert('Sorry, there was an error sending your RSVP. Please try again or contact us directly.');
+                    
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            }, 1500); // Simulate network delay
         });
     }
     
-    // Add form field animations and interactions
-    function addFormAnimations() {
-        const formControls = document.querySelectorAll('.form-control');
+    function showThankYouMessage() {
+        if (!rsvpForm || !thankYouMessage) return;
         
-        formControls.forEach(control => {
-            // Add focus/blur animations
-            control.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
+        // Hide form with fade out effect
+        rsvpForm.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+        rsvpForm.style.opacity = '0';
+        rsvpForm.style.transform = 'translateY(-20px)';
+        
+        setTimeout(() => {
+            rsvpForm.style.display = 'none';
             
-            control.addEventListener('blur', function() {
-                this.parentElement.classList.remove('focused');
-                if (this.value.trim()) {
-                    this.parentElement.classList.add('filled');
-                } else {
-                    this.parentElement.classList.remove('filled');
-                }
-            });
+            // Show thank you message with fade in effect
+            thankYouMessage.classList.remove('hidden');
+            thankYouMessage.style.display = 'block';
+            thankYouMessage.style.opacity = '0';
+            thankYouMessage.style.transform = 'translateY(20px)';
+            thankYouMessage.style.transition = 'opacity 0.5s ease-in, transform 0.5s ease-in';
             
-            // Check if field is pre-filled
-            if (control.value.trim()) {
-                control.parentElement.classList.add('filled');
+            // Force reflow
+            thankYouMessage.offsetHeight;
+            
+            thankYouMessage.style.opacity = '1';
+            thankYouMessage.style.transform = 'translateY(0)';
+            
+            // Scroll to thank you message
+            setTimeout(() => {
+                thankYouMessage.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 300);
+            
+        }, 500);
+    }
+    
+    // Fix external links to open in new tabs
+    function setupExternalLinks() {
+        document.querySelectorAll('a[href^="http"], a[href^="https"]').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+            
+            // Add visual indicator for external links
+            if (!link.querySelector('svg')) {
+                const icon = document.createElement('span');
+                icon.innerHTML = ' ↗';
+                icon.style.fontSize = '0.8em';
+                icon.style.opacity = '0.7';
+                link.appendChild(icon);
             }
         });
-        
-        // Add real-time validation feedback
-        const emailField = document.getElementById('email');
-        if (emailField) {
-            emailField.addEventListener('input', function() {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (this.value.trim() && !emailRegex.test(this.value.trim())) {
-                    this.style.borderColor = 'var(--color-warning)';
-                } else {
-                    this.style.borderColor = '';
+    }
+    
+    // Accessibility enhancements
+    function setupAccessibility() {
+        // Add keyboard navigation for custom radio buttons
+        attendanceRadios.forEach((radio, index) => {
+            radio.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const nextIndex = (index + 1) % attendanceRadios.length;
+                    attendanceRadios[nextIndex].focus();
+                    attendanceRadios[nextIndex].checked = true;
+                    if (attendanceError && attendanceError.classList.contains('show')) {
+                        validateAttendance();
+                    }
+                } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    const prevIndex = (index - 1 + attendanceRadios.length) % attendanceRadios.length;
+                    attendanceRadios[prevIndex].focus();
+                    attendanceRadios[prevIndex].checked = true;
+                    if (attendanceError && attendanceError.classList.contains('show')) {
+                        validateAttendance();
+                    }
                 }
             });
-        }
+        });
     }
     
-    // Add decorative element interactions
-    function addDecorativeInteractions() {
-        // Add hover effects to ceremony cards
-        const ceremonyCards = document.querySelectorAll('.ceremony');
-        ceremonyCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-4px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = '';
-            });
-        });
-        
-        // Add subtle parallax effect to decorative elements
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const decorativeElements = document.querySelectorAll('.decorative-motif, .heart-divider');
-            
-            decorativeElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-        
-        // Add click animation to submit button
-        const submitButton = document.querySelector('.rsvp-submit');
-        if (submitButton) {
-            submitButton.addEventListener('click', function(event) {
-                // Create ripple effect
-                const rect = this.getBoundingClientRect();
-                const ripple = document.createElement('span');
-                const size = Math.max(rect.width, rect.height);
-                const x = event.clientX - rect.left - size / 2;
-                const y = event.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple 0.6s linear;
-                    pointer-events: none;
-                `;
-                
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        }
-    }
+    // Initialize features
+    setupExternalLinks();
+    setupAccessibility();
     
-    // Add CSS for ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
+    // Smooth scrolling for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
-        }
-        
-        .form-group.focused .form-label {
-            color: var(--color-wedding-gold);
-            transform: translateY(-2px);
-            transition: all var(--duration-fast) var(--ease-standard);
-        }
-        
-        .form-group.filled .form-label {
-            font-weight: var(--font-weight-semibold);
-        }
-    `;
-    document.head.appendChild(style);
+        });
+    });
     
-    // Add entrance animations
-    function addEntranceAnimations() {
+    // Add subtle animations on scroll (enhanced)
+    function handleScrollAnimations() {
         const observerOptions = {
-            threshold: 0.1,
+            threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
         };
         
@@ -381,27 +300,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animated');
                 }
             });
         }, observerOptions);
         
-        // Observe sections for animation
-        const sections = document.querySelectorAll('.family-section, .couple-section, .details-section, .rsvp-section');
-        sections.forEach((section, index) => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-            observer.observe(section);
+        // Observe elements for scroll animations
+        const animatedElements = document.querySelectorAll(
+            '.detail-card, .story-content, .rsvp-container'
+        );
+        
+        animatedElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+            observer.observe(el);
         });
     }
     
-    // Initialize entrance animations after a short delay
-    setTimeout(addEntranceAnimations, 500);
+    // Initialize scroll animations if supported
+    if ('IntersectionObserver' in window) {
+        handleScrollAnimations();
+    } else {
+        // Fallback for older browsers - show all elements
+        document.querySelectorAll('.detail-card, .story-content, .rsvp-container')
+            .forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+    }
+    
+    // Remove any unwanted focus outlines that might appear as blue dots
+    document.addEventListener('click', function(e) {
+        // Remove focus from clicked elements to prevent blue outline artifacts
+        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+            e.target.blur();
+        }
+    });
+    
+    // Enhanced form interaction
+    const formFields = [nameField, emailField, messageField];
+    formFields.forEach(field => {
+        if (field) {
+            field.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            field.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        }
+    });
+    
+    // Console welcome message
+    console.log('🎉 Welcome to Aparna & Arjun\'s Wedding Invitation!');
+    console.log('📅 Wedding: December 6th, 2025 at 7:15 PM');
+    console.log('🎊 Reception: December 7th, 2025 at 7:30 PM');
+    console.log('🏛️ Venue: The Oberoi Grand, Kolkata');
+    console.log('💝 Made with love for the happy couple');
+    console.log('');
+    console.log('To customize this invitation:');
+    console.log('1. Replace couple names in HTML');
+    console.log('2. Update dates and venue information');
+    console.log('3. Change FormSubmit email endpoint');
+    console.log('4. Host on GitHub Pages for free!');
+    
 });
-
-// Export functions for testing (if needed)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        closeModal: window.closeModal
-    };
-}
