@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation: Swati & Rajarshi - </title>
+    <title>Wedding Invitation: Swati & Rajarshi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,11 +54,7 @@
         }
         .animate-symbol-float { animation: symbol-float 4s ease-in-out infinite; }
         
-        @keyframes film-strip-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        .animate-film-strip-scroll { animation: film-strip-scroll 40s linear infinite; }
+        /* Removed horizontal scroll animation */
 
         /* On-Load & On-Scroll Transitions */
         .initial-hidden {
@@ -95,308 +90,371 @@
         #hero-content.is-mounted .hero-el.names { transition-delay: 600ms; }
         #hero-content.is-mounted .hero-el.tagline { transition-delay: 1200ms; }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.1.1",
-    "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
-    "react/": "https://esm.sh/react@^19.1.1/"
-  }
-}
-</script>
 </head>
 <body>
 
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bengali-ivory)] transition-opacity duration-1000">
-      <div class="text-center text-[var(--bengali-maroon)]">
+<!-- Loading Screen -->
+<div id="loadingScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bengali-ivory)] transition-opacity duration-1000">
+    <div class="text-center text-[var(--bengali-maroon)]">
         <span class="mx-auto h-20 w-20 text-6xl animate-lotus-glow-spin text-[var(--bengali-gold)] inline-block">🪷</span>
         <div class="mt-4 font-playfair text-4xl animate-title-glow text-[var(--bengali-red)]">
-          শুভ বিবাহ
+            শুভ বিবাহ
         </div>
         <p class="mt-2 text-lg text-[var(--bengali-brown)]">Auspicious Wedding</p>
-      </div>
     </div>
+</div>
 
-    <div id="mainContent" class="initial-hidden bg-[var(--bengali-ivory)] text-[var(--bengali-brown)]">
-        <header>
-            <!-- Hero Section -->
-            <section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--bengali-cream)] via-[var(--bengali-ivory)] to-rose-100 p-4">
-                <div class="absolute inset-0 pointer-events-none">
-                    <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 0s; animation-duration: 15s; left: 10%;">🌸</div>
-                    <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 2s; animation-duration: 18s; left: 20%;">🌸</div>
-                    <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 4s; animation-duration: 12s; left: 30%;">🌸</div>
-                    <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 6s; animation-duration: 20s; left: 50%;">🌸</div>
-                    <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 8s; animation-duration: 16s; left: 70%;">🌸</div>
-                    <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 10s; animation-duration: 14s; left: 90%;">🌸</div>
+<div id="mainContent" class="initial-hidden bg-[var(--bengali-ivory)] text-[var(--bengali-brown)]">
+    <header>
+        <!-- Hero Section -->
+        <section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--bengali-cream)] via-[var(--bengali-ivory)] to-rose-100 p-4">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 0s; animation-duration: 15s; left: 10%;">🌸</div>
+                <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 2s; animation-duration: 18s; left: 20%;">🌸</div>
+                <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 4s; animation-duration: 12s; left: 30%;">🌸</div>
+                <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 6s; animation-duration: 20s; left: 50%;">🌸</div>
+                <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 8s; animation-duration: 16s; left: 70%;">🌸</div>
+                <div class="absolute text-2xl text-[var(--bengali-deep-red)] animate-float-petal" style="animation-delay: 10s; animation-duration: 14s; left: 90%;">🌸</div>
+            </div>
+
+            <div id="hero-content" class="relative w-full text-center z-10">
+                <div class="hero-el title">
+                    <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)] animate-title-glow">শুভ বিবাহ</h2>
+                    <p class="mt-2 text-lg text-[var(--bengali-brown)] italic">Auspicious Wedding</p>
                 </div>
 
-                <div id="hero-content" class="relative w-full text-center z-10">
-                    <div class="hero-el title">
-                        <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)] animate-title-glow">শুভ বিবাহ</h2>
-                        <p class="mt-2 text-lg text-[var(--bengali-brown)] italic">Auspicious Wedding</p>
-                    </div>
+                <h1 class="my-8 font-playfair text-5xl md:text-7xl lg:text-8xl hero-el names">
+                    <span>Swati</span>
+                    <span class="mx-4 text-[var(--bengali-gold)]">&</span>
+                    <span>Rajarshi</span>
+                </h1>
 
-                    <h1 class="my-8 font-playfair text-5xl md:text-7xl lg:text-8xl hero-el names">
-                        <span>Swati</span>
-                        <span class="mx-4 text-[var(--bengali-gold)]">&</span>
-                        <span>Rajarshi</span>
-                    </h1>
-
-                    <div class="hero-el tagline">
-                        <p class="mx-auto max-w-2xl text-xl text-[var(--bengali-brown)] italic">
-                            Two hearts, one soul, and a shared love for debating about fish curry, are finally making it official.
-                        </p>
-                        <div class="my-8 flex justify-center">
-                            <span class="inline-block text-5xl text-[var(--bengali-gold)] animate-lotus-glow-spin">🪷</span>
-                        </div>
-                        <p class="text-lg text-[var(--bengali-maroon)]">We request the pleasure of your company to celebrate our union.</p>
+                <div class="hero-el tagline">
+                    <p class="mx-auto max-w-2xl text-xl text-[var(--bengali-brown)] italic">
+                        Two hearts, one soul, and a shared love for debating about fish curry, are finally making it official.
+                    </p>
+                    <div class="my-8 flex justify-center">
+                        <span class="inline-block text-5xl text-[var(--bengali-gold)] animate-lotus-glow-spin">🪷</span>
                     </div>
-                </div>
-            </section>
-        </header>
-        <main>
-            <!-- Wedding Details Section -->
-            <section class="bg-white py-20 px-4">
-                <div class="container mx-auto text-center">
-                    <div class="animate-on-scroll">
-                        <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)] mb-4">Wedding Celebrations</h2>
-                        <div class="mx-auto h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
-                    </div>
-                    
-                    <div class="mt-16 mx-auto grid max-w-4xl grid-cols-1 gap-12 md:grid-cols-2">
-                        <div class="animate-on-scroll delay-300">
-                             <div class="group relative w-full overflow-hidden rounded-xl border-2 border-[var(--bengali-gold)] bg-[var(--bengali-ivory)] p-6 text-center shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                                <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500 opacity-0 transition-opacity duration-500 group-hover:opacity-10 blur-xl"></div>
-                                <div class="relative">
-                                    <div class="mb-4 text-5xl">💒</div>
-                                    <h3 class="font-playfair text-3xl text-[var(--bengali-maroon)]">Wedding</h3>
-                                    <div class="my-4 rounded-lg bg-red-50 p-3">
-                                        <p class="text-lg font-semibold text-[var(--bengali-maroon)]">বিবাহ অনুষ্ঠান</p>
-                                        <p class="text-sm italic text-[var(--bengali-brown)]">Wedding Ceremony</p>
-                                    </div>
-                                    <div class="space-y-3 text-left text-base text-[var(--bengali-brown)]">
-                                        <div class="flex items-center gap-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                                            <span>Sunday, 24th November, 2025 | 6 PM onwards</span>
-                                        </div>
-                                        <div class="flex items-center gap-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                            <span>Sher Bengal River Resort, Kolaghat</span>
-                                        </div>
-                                        <a href="https://maps.app.goo.gl/VpbPLepKRzjTWU8NA" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-blue-600 hover:underline">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                            <span>View on Google Maps</span>
-                                        </a>
-                                    </div>
-                                    <p class="mt-6 border-t-2 border-dashed border-[var(--bengali-gold)] pt-4 text-sm italic text-[var(--bengali-brown)]">Witness our sacred vows and Shubho Drishti.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="animate-on-scroll delay-500">
-                             <div class="group relative w-full overflow-hidden rounded-xl border-2 border-[var(--bengali-gold)] bg-[var(--bengali-ivory)] p-6 text-center shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                                <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500 opacity-0 transition-opacity duration-500 group-hover:opacity-10 blur-xl"></div>
-                                <div class="relative">
-                                    <div class="mb-4 text-5xl">🎉</div>
-                                    <h3 class="font-playfair text-3xl text-[var(--bengali-maroon)]">Reception</h3>
-                                    <div class="my-4 rounded-lg bg-red-50 p-3">
-                                        <p class="text-lg font-semibold text-[var(--bengali-maroon)]">প্রীতিভোজ</p>
-                                        <p class="text-sm italic text-[var(--bengali-brown)]">Reception Feast</p>
-                                    </div>
-                                    <div class="space-y-3 text-left text-base text-[var(--bengali-brown)]">
-                                        <div class="flex items-center gap-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                                            <span>Wednesday, 27th November, 2025 | 6 PM onwards</span>
-                                        </div>
-                                        <div class="flex items-center gap-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                            <span>Metro Railways Officers Club, Kolkata</span>
-                                        </div> 
-                                        <a href="https://maps.app.goo.gl/5hLLXiDrtkcss6Us7" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-blue-600 hover:underline">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                            <span>View on Google Maps</span>
-                                        </a>
-                                    </div>
-                                    <p class="mt-6 border-t-2 border-dashed border-[var(--bengali-gold)] pt-4 text-sm italic text-[var(--bengali-brown)]">Join us for an evening of dinner, dance, and celebration.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Couple Story Section -->
-            <section class="bg-[var(--bengali-cream)] py-20 px-4">
-                <div class="container mx-auto max-w-3xl text-center">
-                    <div class="animate-on-scroll">
-                        <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)]">Our Story</h2>
-                        <div class="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
-                    </div>
-                    <div class="mt-12 space-y-6 text-lg text-[var(--bengali-brown)] animate-on-scroll delay-200">
-                        <p>It all started not with a bang, but with a mis-sent friend request and a heated argument over who makes the better 'ilish bhapa'. Several years, countless cups of 'cha', and one fiercely protected Netflix account later, we decided it was time to make our alliance official.</p>
-                        <p>With the blessings of our families, who have finally accepted our questionable taste in movies, we joyfully invite you to be a part of our next big adventure. Please join us as we start our journey as husband and wife (and finally settle the fish debate once and for all).</p>
-                    </div>
-                    <div class="mt-12 flex justify-center gap-8 text-5xl text-[var(--bengali-warm-gold)] animate-on-scroll delay-300">
-                        <span class="animate-symbol-float" style="animation-delay: -0.5s;">🐚</span>
-                        <span class="animate-symbol-float">🪷</span>
-                        <span class="animate-symbol-float" style="animation-delay: -1s;">🕉️</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 
-                PHOTO REEL INSTRUCTIONS:
-                1. Create a folder named "images" in the same directory as this index.html file.
-                2. Add your 5 photos to this folder.
-                3. Name them "photo_1.jpg", "photo_2.jpg", "photo_3.jpg", "photo_4.jpg", and "photo_5.jpg".
-                The site will automatically load them.
-            -->
-            <section class="bg-white py-20 overflow-hidden">
-                <div class="container mx-auto text-center">
-                    <div class="animate-on-scroll">
-                        <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)]">Our Story in Snapshots</h2>
-                        <p class="mt-2 text-lg text-[var(--bengali-brown)] italic">A collection of highly-curated, totally-not-embarrassing moments.</p>
-                    </div>
-                </div>
-                <div class="mt-12 relative w-full group animate-on-scroll delay-200">
-                    <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
-                    <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
-                    <div class="flex group-hover:[animation-play-state:paused] animate-film-strip-scroll">
-                        <!-- Photos duplicated for seamless loop -->
-                        <div class="flex">
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo1.jpeg" alt="Photo of the couple 1" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                Romantic dinner or silent negotiation? He blinked twice. We settled it with one gulab jamun each — love wins</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo2.jpeg" alt="Photo of the couple 2" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                She’s giving ‘Ghibli heroine falling in love’ energy.  I’m giving 'Ma bolechilo 6:30-r modhye bari fire aaste’ vibes</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo4.jpeg" alt="Photo of the couple 3" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                One of us showed up like it’s a wedding. The other thought it was a quick stop for mom’s groceries.</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo5.jpeg" alt="Photo of the couple 4" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                A modern take on The Creation of Adam — but instead of life, I’m handing over control of the music playlist.</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo6.jpeg" alt="Photo of the couple 5" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                A quiet moment between two people… and one waiter who's 95% sure we’re about to ask for extra chutney again.</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo7.jpeg" alt="Photo of the couple 5" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                This ride was 40% romance, 60% directions like ‘just go straight and take a left where that chaiwala used to be’.</p></div>
-
-                        </div>
-                        <div class="flex">
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo1.jpeg" alt="Photo of the couple 1" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                Romantic dinner or silent negotiation? He blinked twice. We settled it with one gulab jamun each — love wins</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo2.jpeg" alt="Photo of the couple 2" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                She said ‘act natural.’ He looked like a man who just got caught choosing pani puri over her Insta story.</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo4.jpeg" alt="Photo of the couple 3" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                One of us showed up like it’s a wedding. The other thought it was a quick stop for mom’s groceries.</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo5.jpeg" alt="Photo of the couple 4" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                A modern take on The Creation of Adam — but instead of life, I’m handing over control of the music playlist.</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo6.jpeg" alt="Photo of the couple 5" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                A quiet moment between two people… and one waiter who's 95% sure we’re about to ask for extra chutney again.</p></div>
-                            <div class="flex-shrink-0 w-64 md:w-80 space-y-2 mx-4"><div class="bg-gray-200 h-64 md:h-80 w-full rounded-md overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                                <img src="photos/photo7.jpeg" alt="Photo of the couple 5" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500"></div><p class="text-center text-sm italic text-[var(--bengali-brown)] px-2">
-                                This ride was 40% romance, 60% directions like ‘just go straight and take a left where that chaiwala used to be’.</p></div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Blessings Section -->
-            <section class="bg-[var(--bengali-cream)] py-20 px-4">
-                <div class="container mx-auto max-w-3xl text-center">
-                    <div class="animate-on-scroll">
-                        <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)]">Traditional Blessings</h2>
-                        <div class="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
-                    </div>
-                    <div class="mt-12 space-y-8 animate-on-scroll delay-200">
-                        <div>
-                            <p class="font-playfair text-2xl md:text-3xl text-[var(--bengali-maroon)]">শুবস্য শীঘ্রং</p>
-                            <p class="mt-1 italic text-[var(--bengali-brown)]">May good fortune come swiftly</p>
-                        </div>
-                        <div class="flex justify-center"><span class="text-3xl text-[var(--bengali-gold)]/80">🪷</span></div>
-                        <div>
-                            <p class="font-playfair text-2xl md:text-3xl text-[var(--bengali-maroon)]">সর্বমঙ্গল মাঙ্গল্যে</p>
-                            <p class="mt-1 italic text-[var(--bengali-brown)]">May this union bring prosperity to all</p>
-                        </div>
-                        <div class="flex justify-center"><span class="text-3xl text-[var(--bengali-gold)]/80">🪷</span></div>
-                        <div>
-                            <p class="font-playfair text-2xl md:text-3xl text-[var(--bengali-maroon)]">সুখী দম্পতি হও</p>
-                            <p class="mt-1 italic text-[var(--bengali-brown)]">May you be a happy couple</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <!-- Footer -->
-        <footer class="bg-gradient-to-r from-[var(--bengali-maroon)] to-[var(--bengali-deep-red)] text-white py-12 px-4">
-            <div class="container mx-auto text-center">
-                <div class="mb-8">
-                    <h3 class="font-playfair text-2xl text-[var(--bengali-gold)]">With warm regards</h3>
-                    <p class="mt-2 text-lg opacity-90">We await your presence and blessings.</p>
-                </div>
-                <div class="my-8 h-px w-full bg-gradient-to-r from-transparent via-[var(--bengali-gold)] to-transparent"></div>
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div class="text-center md:text-left">
-                        <h4 class="font-semibold text-lg text-[var(--bengali-gold)]">Contact Information</h4>
-                        <p class="mt-2 opacity-80">For any queries, please reach out:</p>
-                        <p class="mt-1 opacity-90">+91 9953065381</p>
-                        <p class="mt-1 opacity-90">rajarshi.devnath@gmail.com</p>
-                    </div>
-                    <div class="text-center md:text-right">
-                         <div class="font-playfair text-3xl text-[var(--bengali-gold)] animate-title-glow">সবার মঙ্গল হোক</div>
-                        <div class="italic opacity-80">May everyone be blessed</div>
-                    </div>
-                </div>
-                <div class="mt-12 text-sm opacity-70">
-                    <p>&copy; 2025 Swati & Rajarshi's Wedding. Crafted with ❤️ and lots of code.</p>
+                    <p class="text-lg text-[var(--bengali-maroon)]">We request the pleasure of your company to celebrate our union.</p>
                 </div>
             </div>
-        </footer>
-    </div>
+        </section>
+    </header>
+    <main>
+        <!-- NEW: Countdown Timer Section -->
+        <section class="bg-white py-16 px-4 text-center">
+            <div class="container mx-auto">
+                <div class="animate-on-scroll">
+                    <h2 class="font-playfair text-3xl md:text-4xl text-[var(--bengali-maroon)] mb-2">The Celebration Begins In...</h2>
+                    <div class="mx-auto h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
+                </div>
+                <div id="countdown" class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto text-[var(--bengali-maroon)] animate-on-scroll delay-200">
+                    <div class="bg-[var(--bengali-cream)] p-4 rounded-lg shadow-md border-2 border-[var(--bengali-gold)]/50">
+                        <div id="days" class="font-playfair text-4xl md:text-5xl">00</div>
+                        <div class="text-sm text-[var(--bengali-brown)]">Days</div>
+                    </div>
+                    <div class="bg-[var(--bengali-cream)] p-4 rounded-lg shadow-md border-2 border-[var(--bengali-gold)]/50">
+                        <div id="hours" class="font-playfair text-4xl md:text-5xl">00</div>
+                        <div class="text-sm text-[var(--bengali-brown)]">Hours</div>
+                    </div>
+                    <div class="bg-[var(--bengali-cream)] p-4 rounded-lg shadow-md border-2 border-[var(--bengali-gold)]/50">
+                        <div id="minutes" class="font-playfair text-4xl md:text-5xl">00</div>
+                        <div class="text-sm text-[var(--bengali-brown)]">Minutes</div>
+                    </div>
+                    <div class="bg-[var(--bengali-cream)] p-4 rounded-lg shadow-md border-2 border-[var(--bengali-gold)]/50">
+                        <div id="seconds" class="font-playfair text-4xl md:text-5xl">00</div>
+                        <div class="text-sm text-[var(--bengali-brown)]">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Loading Screen Logic
-            const loadingScreen = document.getElementById('loadingScreen');
-            const mainContent = document.getElementById('mainContent');
-            if (loadingScreen && mainContent) {
-                setTimeout(() => {
-                    loadingScreen.classList.add('opacity-0');
-                    loadingScreen.addEventListener('transitionend', () => {
-                        loadingScreen.style.display = 'none';
-                    });
-                    mainContent.classList.remove('initial-hidden');
-                    mainContent.classList.add('opacity-100');
-                    
-                    const heroContent = document.getElementById('hero-content');
-                    if(heroContent) {
-                        heroContent.classList.add('is-mounted');
-                    }
-                }, 2500);
-            }
-            
-            // Intersection Observer for scroll animations
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
+        <!-- Wedding Details Section -->
+        <section class="bg-white py-20 px-4">
+            <div class="container mx-auto text-center">
+                <div class="animate-on-scroll">
+                    <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)] mb-4">Wedding Celebrations</h2>
+                    <div class="mx-auto h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
+                </div>
+
+                <div class="mt-16 mx-auto grid max-w-4xl grid-cols-1 gap-12 md:grid-cols-2">
+                    <div class="animate-on-scroll delay-300">
+                        <div class="group relative w-full overflow-hidden rounded-xl border-2 border-[var(--bengali-gold)] bg-[var(--bengali-ivory)] p-6 text-center shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500 opacity-0 transition-opacity duration-500 group-hover:opacity-10 blur-xl"></div>
+                            <div class="relative">
+                                <div class="mb-4 text-5xl">💒</div>
+                                <h3 class="font-playfair text-3xl text-[var(--bengali-maroon)]">Wedding</h3>
+                                <div class="my-4 rounded-lg bg-red-50 p-3">
+                                    <p class="text-lg font-semibold text-[var(--bengali-maroon)]">বিবাহ অনুষ্ঠান</p>
+                                    <p class="text-sm italic text-[var(--bengali-brown)]">Wedding Ceremony</p>
+                                </div>
+                                <div class="space-y-3 text-left text-base text-[var(--bengali-brown)]">
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        <span>Sunday, 24th November 2025 | 6 PM onwards</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                        <span>Sher Bengal River Resort, Kolaghat</span>
+                                    </div>
+                                    <a href="https://maps.app.goo.gl/VpbPLepKRzjTWU8NA" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-blue-600 hover:underline">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        <span>View on Google Maps</span>
+                                    </a>
+                                </div>
+                                <!-- NEW: Add to Calendar Button -->
+                                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Swati+%26+Rajarshi%27s+Wedding&dates=20251124T180000/20251124T230000&details=Join+us+for+the+wedding+of+Swati+and+Rajarshi.+We+can%27t+wait+to+celebrate+with+you!&location=Sher+Bengal+River+Resort,+Kolaghat&sf=true&output=xml" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block w-full rounded-lg bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] px-6 py-3 font-semibold text-white shadow-md transition-transform hover:scale-105">
+                                    Add to Calendar
+                                </a>
+                                <p class="mt-6 border-t-2 border-dashed border-[var(--bengali-gold)] pt-4 text-sm italic text-[var(--bengali-brown)]">Witness our sacred vows and Shubho Drishti.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="animate-on-scroll delay-500">
+                        <div class="group relative w-full overflow-hidden rounded-xl border-2 border-[var(--bengali-gold)] bg-[var(--bengali-ivory)] p-6 text-center shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500 opacity-0 transition-opacity duration-500 group-hover:opacity-10 blur-xl"></div>
+                            <div class="relative">
+                                <div class="mb-4 text-5xl">🎉</div>
+                                <h3 class="font-playfair text-3xl text-[var(--bengali-maroon)]">Reception</h3>
+                                <div class="my-4 rounded-lg bg-red-50 p-3">
+                                    <p class="text-lg font-semibold text-[var(--bengali-maroon)]">প্রীতিভোজ</p>
+                                    <p class="text-sm italic text-[var(--bengali-brown)]">Reception Feast</p>
+                                </div>
+                                <div class="space-y-3 text-left text-base text-[var(--bengali-brown)]">
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        <span>Wednesday, 27th November, 2025 | 6 PM onwards</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-[var(--bengali-deep-red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                        <span>Metro Railways Officers Club, Kolkata</span>
+                                    </div>
+                                    <a href="https://maps.app.goo.gl/5hLLXiDrtkcss6Us7" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-blue-600 hover:underline">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        <span>View on Google Maps</span>
+                                    </a>
+                                </div>
+                                <!-- NEW: Add to Calendar Button -->
+                                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Swati+%26+Rajarshi%27s+Reception&dates=20251127T180000/20251127T230000&details=Join+us+for+the+reception+feast+of+Swati+and+Rajarshi.+Dinner,+dance,+and+celebration!&location=Metro+Railways+Officers+Club,+Kolkata&sf=true&output=xml" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block w-full rounded-lg bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] px-6 py-3 font-semibold text-white shadow-md transition-transform hover:scale-105">
+                                    Add to Calendar
+                                </a>
+                                <p class="mt-6 border-t-2 border-dashed border-[var(--bengali-gold)] pt-4 text-sm italic text-[var(--bengali-brown)]">Join us for an evening of dinner, dance, and celebration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Couple Story Section -->
+        <section class="bg-[var(--bengali-cream)] py-20 px-4">
+            <div class="container mx-auto max-w-3xl text-center">
+                <div class="animate-on-scroll">
+                    <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)]">Our Story</h2>
+                    <div class="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
+                </div>
+                <div class="mt-12 space-y-6 text-lg text-[var(--bengali-brown)] animate-on-scroll delay-200">
+                    <p>It all started not with a bang, but with a mis-sent friend request and a heated argument over who makes the better 'ilish bhapa'. Several years, countless cups of 'cha', and one fiercely protected Netflix account later, we decided it was time to make our alliance official.</p>
+                    <p>With the blessings of our families, who have finally accepted our questionable taste in movies, we joyfully invite you to be a part of our next big adventure. Please join us as we start our journey as husband and wife (and finally settle the fish debate once and for all).</p>
+                </div>
+                <div class="mt-12 flex justify-center gap-8 text-5xl text-[var(--bengali-warm-gold)] animate-on-scroll delay-300">
+                    <span class="animate-symbol-float" style="animation-delay: -0.5s;">🐚</span>
+                    <span class="animate-symbol-float">🪷</span>
+                    <span class="animate-symbol-float" style="animation-delay: -1s;">🕉️</span>
+                </div>
+            </div>
+        </section>
+
+        <!--
+            PHOTO REEL CHANGED TO VERTICAL
+            - Instructions remain the same: Put photos in the 'photos' folder.
+            - The layout is now a single, scrollable vertical column.
+        -->
+        <section class="bg-white py-20 overflow-hidden">
+            <div class="container mx-auto text-center">
+                <div class="animate-on-scroll">
+                    <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)]">Our Story in Snapshots</h2>
+                    <p class="mt-2 text-lg text-[var(--bengali-brown)] italic">A collection of highly-curated, totally-not-embarrassing moments.</p>
+                </div>
+            </div>
+
+            <!-- VERTICAL PHOTO REEL -->
+            <div class="mt-12 grid grid-cols-1 gap-12 px-4">
+                <!-- Photo 1 -->
+                <div class="w-full max-w-sm mx-auto animate-on-scroll">
+                    <div class="bg-gray-200 w-full h-80 md:h-96 rounded-md overflow-hidden shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <img src="photos/photo1.jpeg" alt="Photo of the couple 1" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500">
+                    </div>
+                    <p class="text-center text-sm italic text-[var(--bengali-brown)] mt-4 px-2">
+                        Romantic dinner or silent negotiation? He blinked twice. We settled it with one gulab jamun each — love wins.
+                    </p>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="w-full max-w-sm mx-auto animate-on-scroll">
+                    <div class="bg-gray-200 w-full h-80 md:h-96 rounded-md overflow-hidden shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <img src="photos/photo2.jpeg" alt="Photo of the couple 2" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500">
+                    </div>
+                    <p class="text-center text-sm italic text-[var(--bengali-brown)] mt-4 px-2">
+                        She’s giving ‘Ghibli heroine falling in love’ energy. I’m giving 'Ma bolechilo 6:30-r modhye bari fire aaste’ vibes.
+                    </p>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="w-full max-w-sm mx-auto animate-on-scroll">
+                    <div class="bg-gray-200 w-full h-80 md:h-96 rounded-md overflow-hidden shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <img src="photos/photo4.jpeg" alt="Photo of the couple 3" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500">
+                    </div>
+                    <p class="text-center text-sm italic text-[var(--bengali-brown)] mt-4 px-2">
+                        One of us showed up like it’s a wedding. The other thought it was a quick stop for mom’s groceries.
+                    </p>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="w-full max-w-sm mx-auto animate-on-scroll">
+                    <div class="bg-gray-200 w-full h-80 md:h-96 rounded-md overflow-hidden shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <img src="photos/photo5.jpeg" alt="Photo of the couple 4" class="w-full h-full object-cover filter grayscale sepia contrast-125 hover:filter-none transition-all duration-500">
+                    </div>
+                    <p class="text-center text-sm italic text-[var(--bengali-brown)] mt-4 px-2">
+                        A modern take on The Creation of Adam — but instead of life, I’m handing over control of the music playlist.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Guest Wishes Section -->
+        <section class="bg-[var(--bengali-cream)] py-20 px-4">
+            <div class="container mx-auto max-w-3xl text-center">
+                <div class="animate-on-scroll">
+                    <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)]">Share Your Blessings</h2>
+                    <div class="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
+                </div>
+                <div class="mt-8 text-lg text-[var(--bengali-brown)] animate-on-scroll delay-200">
+                    <p>Your presence at our wedding is the greatest gift of all. However, if you wish to share a message or a memory, we would be overjoyed to read it. Your words will be a cherished keepsake for our new journey together.</p>
+                    <a href="https://forms.gle/your-form-link-here" target="_blank" rel="noopener noreferrer" class="mt-8 inline-block rounded-lg bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] px-8 py-3 font-semibold text-white shadow-md transition-transform hover:scale-105">
+                        Leave a Message in Our Guestbook
+                    </a>
+                    <p class="mt-4 text-sm italic">(This will open a secure guestbook page)</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Blessings Section -->
+        <section class="bg-[var(--bengali-cream)] py-20 px-4">
+            <div class="container mx-auto max-w-3xl text-center">
+                <div class="animate-on-scroll">
+                    <h2 class="font-playfair text-4xl md:text-5xl text-[var(--bengali-maroon)]">Traditional Blessings</h2>
+                    <div class="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-[var(--bengali-gold)] to-[var(--bengali-red)] rounded-full"></div>
+                </div>
+                <div class="mt-12 space-y-8 animate-on-scroll delay-200">
+                    <div>
+                        <p class="font-playfair text-2xl md:text-3xl text-[var(--bengali-maroon)]">শুবস্য শীঘ্রং</p>
+                        <p class="mt-1 italic text-[var(--bengali-brown)]">May good fortune come swiftly</p>
+                    </div>
+                    <div class="flex justify-center"><span class="text-3xl text-[var(--bengali-gold)]/80">🪷</span></div>
+                    <div>
+                        <p class="font-playfair text-2xl md:text-3xl text-[var(--bengali-maroon)]">সর্বমঙ্গল মাঙ্গল্যে</p>
+                        <p class="mt-1 italic text-[var(--bengali-brown)]">May this union bring prosperity to all</p>
+                    </div>
+                    <div class="flex justify-center"><span class="text-3xl text-[var(--bengali-gold)]/80">🪷</span></div>
+                    <div>
+                        <p class="font-playfair text-2xl md:text-3xl text-[var(--bengali-maroon)]">সুখী দম্পতি হও</p>
+                        <p class="mt-1 italic text-[var(--bengali-brown)]">May you be a happy couple</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-[var(--bengali-maroon)] to-[var(--bengali-deep-red)] text-white py-12 px-4">
+        <div class="container mx-auto text-center">
+            <div class="mb-8">
+                <h3 class="font-playfair text-2xl text-[var(--bengali-gold)]">With warm regards</h3>
+                <p class="mt-2 text-lg opacity-90">We await your presence and blessings.</p>
+            </div>
+            <div class="my-8 h-px w-full bg-gradient-to-r from-transparent via-[var(--bengali-gold)] to-transparent"></div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h4 class="font-semibold text-lg text-[var(--bengali-gold)]">Contact Information</h4>
+                    <p class="mt-2 opacity-80">For any queries, please reach out:</p>
+                    <p class="mt-1 opacity-90">+91 9953065381</p>
+                    <p class="mt-1 opacity-90">rajarshi.devnath@gmail.com</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="font-playfair text-3xl text-[var(--bengali-gold)] animate-title-glow">সবার মঙ্গল হোক</div>
+                    <div class="italic opacity-80">May everyone be blessed</div>
+                </div>
+            </div>
+            <div class="mt-12 text-sm opacity-70">
+                <p>&copy; 2025 Swati & Rajarshi's Wedding. Crafted with ❤️ and lots of code.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Loading Screen Logic
+        const loadingScreen = document.getElementById('loadingScreen');
+        const mainContent = document.getElementById('mainContent');
+        if (loadingScreen && mainContent) {
+            setTimeout(() => {
+                loadingScreen.classList.add('opacity-0');
+                loadingScreen.addEventListener('transitionend', () => {
+                    loadingScreen.style.display = 'none';
                 });
-            }, { threshold: 0.1 });
+                mainContent.classList.remove('initial-hidden');
+                mainContent.classList.add('opacity-100');
 
-            animatedElements.forEach(el => observer.observe(el));
-        });
-    </script>
+                const heroContent = document.getElementById('hero-content');
+                if(heroContent) {
+                    heroContent.classList.add('is-mounted');
+                }
+            }, 2500);
+        }
+
+        // Intersection Observer for scroll animations
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(el => observer.observe(el));
+
+        // NEW: Countdown Timer Logic
+        const countdownDate = new Date("November 24, 2025 18:00:00").getTime();
+        const countdownElement = document.getElementById('countdown');
+        if (countdownElement) {
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = `<div class="col-span-2 md:col-span-4 font-playfair text-3xl text-[var(--bengali-maroon)]">The big day is here!</div>`;
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            }, 1000);
+        }
+    });
+</script>
 </body>
 </html>
